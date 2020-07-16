@@ -1,0 +1,3 @@
+- [ ] Run maze.rom
+- [ ] CPU runs opcodes
+- [ ] VGA draw graphics
