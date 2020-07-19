@@ -1,3 +1,4 @@
 - [ ] Run maze.rom
 - [ ] CPU runs opcodes
+- [x] CPU returns unimplemented with unimplemented opcode
 - [ ] VGA draw graphics
