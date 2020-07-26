@@ -3,4 +3,5 @@
 - [x] CPU returns unimplemented with unimplemented opcode
 - [x] A21E set 21E to I register
 - [x] C201 set 0 or 1 to V2 register
+- [x] 3201 set 01 to V2 register
 - [ ] VGA draw graphics
