@@ -2,7 +2,7 @@
 -export([alu/1]).
 
 alu(<<3:4, _Operand:12>>) ->
-    {ok, {0, 1}};
+    16#201;
 
 alu(<<16#A:4, Operand:12>>) ->
     {ok, Operand};
