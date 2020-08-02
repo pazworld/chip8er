@@ -9,3 +9,4 @@
 - [x] VDP read pixel specified by x, y
 - [x] VDP write pixel specified by X, y
 - [x] VDP write pixels by a byte
+- [x] VDP divide a byte into 8 bit list

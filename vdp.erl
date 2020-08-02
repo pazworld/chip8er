@@ -1,5 +1,5 @@
 -module(vdp).
--export([new_vram/0, pixel/3, setpixel/4, setbyte/4]).
+-export([new_vram/0, pixel/3, setpixel/4, setbyte/4, bitlist/1]).
 
 new_vram() ->
     [0, 0, 0, 0].
@@ -18,3 +18,6 @@ setpixel(X, Y, Value, VRAM) ->
 
 setbyte(_X, _Y, _Byte, _VRAM) ->
     [1, 1, 0, 0].
+
+bitlist(Byte) ->
+    [X - $0 || X <- io_lib:format("~8.2.0B", [Byte])].
