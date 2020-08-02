@@ -2,7 +2,7 @@
 -export([new_vram/0, pixel/3, setpixel/4, setbyte/4, bitlist/1]).
 
 new_vram() ->
-    [0, 0, 0, 0].
+    [0, 0, 0, 0, 0, 0, 0, 0].
 
 idx(X, Y) ->
     Y * 64 + (X rem 64).
@@ -16,8 +16,13 @@ setpixel(X, Y, Value, VRAM) ->
     Right = [Value | lists:nthtail(Idx + 1, VRAM)],
     Left ++ Right.
 
-setbyte(_X, _Y, _Byte, _VRAM) ->
-    [1, 1, 0, 0].
+setbyte(X, Y, Byte, VRAM) ->
+    F = fun(Bit, {AX, AccVRAM}) ->
+        NextVRAM = setpixel(X + AX, Y, Bit, AccVRAM),
+        {AX + 1, NextVRAM}
+    end,
+    {_, VRAM2} = lists:foldl(F, {0, VRAM}, bitlist(Byte)),
+    VRAM2.
 
 bitlist(Byte) ->
     [X - $0 || X <- io_lib:format("~8.2.0B", [Byte])].
