@@ -6,3 +6,4 @@
 - [x] 3201 skip next if V2 register is 01
 - [ ] D014 draw 4 bytes at V0, V1
 - [ ] VGA draw graphics
+- [x] VDP read read pixel specified by x, y
