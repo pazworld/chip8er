@@ -1,11 +1,20 @@
 -module(vdp).
--export([new_vram/0, pixel/3, setpixel/4]).
+-export([new_vram/0, pixel/3, setpixel/4, setbyte/4]).
 
 new_vram() ->
-    [0].
+    [0, 0, 0, 0].
 
-pixel(_X, _Y, VRAM) ->
-    hd(VRAM).
+idx(X, Y) ->
+    Y * 64 + (X rem 64).
 
-setpixel(_X, _Y, _Value, _VRAM) ->
-    [1].
+pixel(X, Y, VRAM) ->
+    lists:nth(idx(X, Y) + 1, VRAM).
+
+setpixel(X, Y, Value, VRAM) ->
+    Idx = idx(X, Y),
+    Left = lists:sublist(VRAM, Idx),
+    Right = [Value | lists:nthtail(Idx + 1, VRAM)],
+    Left ++ Right.
+
+setbyte(_X, _Y, _Byte, _VRAM) ->
+    [1, 1, 0, 0].

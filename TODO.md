@@ -8,3 +8,4 @@
 - [ ] VGA draw graphics
 - [x] VDP read pixel specified by x, y
 - [x] VDP write pixel specified by X, y
+- [x] VDP write pixels by a byte
