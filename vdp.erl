@@ -1,8 +1,8 @@
 -module(vdp).
--export([new_vram/0, pixel/3, setpixel/4, setbyte/4, bitlist/1]).
+-export([new_vram/0, pixel/3, setpixel/4, setbyte/4, setbytes/4, bitlist/1]).
 
 new_vram() ->
-    [0, 0, 0, 0, 0, 0, 0, 0].
+    [0 || _ <- lists:seq(1, 64 * 32)].
 
 idx(X, Y) ->
     Y * 64 + (X rem 64).
@@ -22,6 +22,14 @@ setbyte(X, Y, Byte, VRAM) ->
         {AX + 1, NextVRAM}
     end,
     {_, VRAM2} = lists:foldl(F, {0, VRAM}, bitlist(Byte)),
+    VRAM2.
+
+setbytes(X, Y, Bytes, VRAM) ->
+    F = fun(Byte, {AY, AccVRAM}) ->
+        NextVRAM = setbyte(X, Y + AY, Byte, AccVRAM),
+        {AY + 1, NextVRAM}
+    end,
+    {_, VRAM2} = lists:foldl(F, {0, VRAM}, Bytes),
     VRAM2.
 
 bitlist(Byte) ->

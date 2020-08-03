@@ -17,5 +17,12 @@ write_pixel_by_byte_test() ->
     ?assertEqual(1, vdp:pixel(1, 0, VRAM2)),
     ?assertEqual(0, vdp:pixel(2, 0, VRAM2)).
 
+write_pixel_by_bytes_test() ->
+    VRAM = vdp:new_vram(),
+    Bytes = [16#FF, 16#FF],
+    VRAM2 = vdp:setbytes(0, 0, Bytes, VRAM),
+    ?assertEqual(1, vdp:pixel(0, 0, VRAM2)),
+    ?assertEqual(1, vdp:pixel(0, 1, VRAM2)).
+
 divide_byte_into_bit_list_test() ->
     ?assertEqual([1, 1, 0, 0, 0, 1, 0, 1], vdp:bitlist(16#C5)).
