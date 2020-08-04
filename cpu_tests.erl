@@ -1,7 +1,7 @@
 -module(cpu_tests).
 -include_lib("eunit/include/eunit.hrl").
 
--record(regs, {pc, i, v={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}}).
+-record(regs, {pc, i, v={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, ram= <<>>, vram=[]}).
 
 return_unimplemented_with_unimplemented_opcode_test() ->
     ?assertEqual(unimplemented, cpu:alu(0, #regs{})).
@@ -19,3 +19,11 @@ c201_set_0_or_1_to_v2_register_test() ->
 op3201_skip_next_if_v2_register_is_01_test() ->
     {_, PC} = cpu:alu(<<16#3201:16>>, #regs{pc=16#300, v={0, 0, 1}}),
     ?assertEqual(16#301, PC).
+
+d014_draw_4_bytes_at_v0_v1_test() ->
+    RAM = <<255, 255, 255, 255>>,
+    VRAM = vdp:new_vram(),
+    R = #regs{i=0, v={0, 0}, ram=RAM, vram=VRAM},
+    {_, R2} = cpu:alu(<<16#D014:16>>, R),
+    VRAM2 = R2#regs.vram,
+    ?assertEqual(1, vdp:pixel(0, 0, VRAM2)).
