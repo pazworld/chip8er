@@ -12,5 +12,5 @@
 - [x] VDP divide a byte into 8 bit list
 - [x] VDP write pixels by bytes
 - [ ] app have a form
-- [ ] RAM makes new memory image
+- [x] RAM makes new memory image
 - [ ] RAM load a rom image
