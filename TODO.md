@@ -14,3 +14,4 @@
 - [ ] app have a form
 - [x] RAM makes new memory image
 - [ ] RAM load a rom image
+- [x] RAM read a byte at specified address
