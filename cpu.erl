@@ -1,5 +1,5 @@
 -module(cpu).
--export([alu/2]).
+-export([alu/2, step/1]).
 
 -record(regs, {pc, i, v={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, ram= <<>>, vram=[]}).
 
@@ -30,3 +30,11 @@ alu(<<16#D:4, Reg1:4, Reg2:4, Size:4>>, R) ->
 
 alu(_, _) ->
     unimplemented.
+
+step(R) ->
+    RAM = R#regs.ram,
+    OpCode1 = ram:at(R#regs.pc, RAM),
+    OpCode2 = ram:at(R#regs.pc + 1, RAM),
+    OpCode = <<OpCode1, OpCode2>>,
+    {ok, R2} = alu(OpCode, R),
+    R2.

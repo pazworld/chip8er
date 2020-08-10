@@ -15,3 +15,4 @@
 - [x] RAM makes new memory image
 - [x] RAM load a rom image
 - [x] RAM read a byte at specified address
+- [x] CPU runs single step

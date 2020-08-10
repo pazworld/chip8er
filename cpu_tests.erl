@@ -27,3 +27,12 @@ d014_draw_4_bytes_at_v0_v1_test() ->
     {_, R2} = cpu:alu(<<16#D014:16>>, R),
     VRAM2 = R2#regs.vram,
     ?assertEqual(1, vdp:pixel(0, 0, VRAM2)).
+
+single_step_test() ->
+    PC = 16#200,
+    RAM = ram:load_file(16#200, "maze.ch8", ram:new_ram()),
+    VRAM = vdp:new_vram(),
+    R = #regs{pc=PC, i=0, v={0}, ram=RAM, vram=VRAM},
+    R2 = cpu:step(R),
+    I = R2#regs.i,
+    ?assertEqual(16#21E, I).
