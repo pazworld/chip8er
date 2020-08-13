@@ -18,3 +18,4 @@
 - [x] CPU runs single step
 - [x] move record definition to header file
 - [x] CPU convert regs to string
+- [x] CPU step increment PC +2

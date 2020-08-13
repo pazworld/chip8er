@@ -40,3 +40,12 @@ regs_to_string_test() ->
     R = #regs{pc=16#200, i=16#FFF, ram=ram:new_ram()},
     S = cpu:regs_to_string(R),
     ?assertEqual("00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00, FFF, 200:0000", S).
+
+step_increment_pc_test() ->
+    PC = 16#200,
+    RAM = ram:load_file(16#200, "maze.ch8", ram:new_ram()),
+    VRAM = vdp:new_vram(),
+    R = #regs{pc=PC, i=0, ram=RAM, vram=VRAM},
+    R2 = cpu:step(R),
+    PC2 = R2#regs.pc,
+    ?assertEqual(PC + 2, PC2).

@@ -35,7 +35,8 @@ step(R) ->
     OpCode1 = ram:at(R#regs.pc, RAM),
     OpCode2 = ram:at(R#regs.pc + 1, RAM),
     OpCode = <<OpCode1, OpCode2>>,
-    {ok, R2} = alu(OpCode, R),
+    NextPC = R#regs.pc + 2,
+    {ok, R2} = alu(OpCode, R#regs{pc=NextPC}),
     R2.
 
 regs_to_string(R) ->
