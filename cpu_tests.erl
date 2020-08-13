@@ -1,7 +1,6 @@
 -module(cpu_tests).
 -include_lib("eunit/include/eunit.hrl").
-
--record(regs, {pc, i, v={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, ram= <<>>, vram=[]}).
+-include("chip8er.hrl").
 
 return_unimplemented_with_unimplemented_opcode_test() ->
     ?assertEqual(unimplemented, cpu:alu(0, #regs{})).

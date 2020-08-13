@@ -1,7 +1,6 @@
 -module(cpu).
 -export([alu/2, step/1]).
-
--record(regs, {pc, i, v={0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}, ram= <<>>, vram=[]}).
+-include("chip8er.hrl").
 
 alu(<<3:4, Reg:4, Operand:8>>, R) ->
     PC = R#regs.pc,
