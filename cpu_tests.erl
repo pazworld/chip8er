@@ -35,3 +35,8 @@ single_step_test() ->
     R2 = cpu:step(R),
     I = R2#regs.i,
     ?assertEqual(16#21E, I).
+
+regs_to_string_test() ->
+    R = #regs{pc=16#200, i=16#FFF, ram=ram:new_ram()},
+    S = cpu:regs_to_string(R),
+    ?assertEqual("00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00, FFF, 200:0000", S).

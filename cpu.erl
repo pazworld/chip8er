@@ -1,5 +1,5 @@
 -module(cpu).
--export([alu/2, step/1]).
+-export([alu/2, step/1, regs_to_string/1]).
 -include("chip8er.hrl").
 
 alu(<<3:4, Reg:4, Operand:8>>, R) ->
@@ -37,3 +37,13 @@ step(R) ->
     OpCode = <<OpCode1, OpCode2>>,
     {ok, R2} = alu(OpCode, R),
     R2.
+
+regs_to_string(R) ->
+    PC = R#regs.pc,
+    RAM = R#regs.ram,
+    OpCode1 = ram:at(PC, RAM),
+    OpCode2 = ram:at(PC + 1, RAM),
+    <<OpCode:16>> = <<OpCode1:8, OpCode2:8>>,
+    I = R#regs.i,
+    V = string:join([io_lib:format("~2.16.0B", [X]) || X <- tuple_to_list(R#regs.v)], " "),
+    lists:flatten(io_lib:format("~s, ~3.16.0B, ~3.16.0B:~4.16.0B", [V, I, PC, OpCode])).
