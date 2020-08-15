@@ -16,8 +16,8 @@ c201_set_0_or_1_to_v2_register_test() ->
     ?assert(V2 =:= 0 orelse V2 =:= 1).
 
 op3201_skip_next_if_v2_register_is_01_test() ->
-    {_, PC} = cpu:alu(<<16#3201:16>>, #regs{pc=16#300, v={0, 0, 1}}),
-    ?assertEqual(16#301, PC).
+    {_, R} = cpu:alu(<<16#3201:16>>, #regs{pc=16#300, v={0, 0, 1}}),
+    ?assertEqual(16#302, R#regs.pc).
 
 d014_draw_4_bytes_at_v0_v1_test() ->
     RAM = <<255, 255, 255, 255>>,

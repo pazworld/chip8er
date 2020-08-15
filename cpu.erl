@@ -6,8 +6,8 @@ alu(<<3:4, Reg:4, Operand:8>>, R) ->
     PC = R#regs.pc,
     VR = element(Reg + 1, R#regs.v),
     case VR of
-        Operand -> {ok, PC + 1};
-        _       -> {ok, PC}
+        Operand -> {ok, R#regs{pc=PC + 2}};
+        _       -> {ok, R}
     end;
 
 alu(<<16#A:4, Operand:12>>, R) ->

@@ -4,6 +4,7 @@
 - [x] A21E set 21E to I register
 - [x] C201 set 0 or 1 to V2 register
 - [x] 3201 skip next if V2 register is 01
+- [x] ALU return regs on 3xxx
 - [x] D014 draw 4 bytes at V0, V1
 - [ ] VGA draw graphics
 - [x] VDP read pixel specified by x, y
