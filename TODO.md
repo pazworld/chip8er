@@ -6,6 +6,7 @@
 - [x] 3201 skip next if V2 register is 01
 - [x] ALU return regs on 3xxx
 - [x] D014 draw 4 bytes at V0, V1
+- [ ] Dxxx sense collision
 - [ ] VGA draw graphics
 - [x] VDP read pixel specified by x, y
 - [x] VDP write pixel specified by X, y
@@ -20,3 +21,4 @@
 - [x] move record definition to header file
 - [x] CPU convert regs to string
 - [x] CPU step increment PC +2
+- [x] ui setup return wxFrame
