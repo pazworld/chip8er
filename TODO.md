@@ -22,3 +22,5 @@
 - [x] CPU convert regs to string
 - [x] CPU step increment PC +2
 - [x] ui setup return wxFrame
+- [ ] ui draw content of VRAM
+- [x] ui getpixel return pixel color
