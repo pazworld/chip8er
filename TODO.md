@@ -24,3 +24,4 @@
 - [x] ui setup return wxFrame
 - [ ] ui draw content of VRAM
 - [x] ui getpixel return pixel color
+- [x] ui drawdot draw pixel
