@@ -25,3 +25,4 @@
 - [ ] ui draw content of VRAM
 - [x] ui getpixel return pixel color
 - [x] ui drawdot draw pixel
+- [x] ui drawdot draw edge same color as pixel

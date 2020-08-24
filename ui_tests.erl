@@ -32,4 +32,4 @@ ui_drawdot_test() ->
     ui:drawdot(F, 0, 0, 1),
     Color = ui:getpixel(F, {0, 0}),
     wxFrame:destroy(F),
-    ?assertEqual(?wxBLACK, Color).
+    ?assertEqual(?wxWHITE, Color).

@@ -22,4 +22,6 @@ drawdot(Obj, X, Y, Bit) ->
     end,
     Brush = wxBrush:new(Color),
     wxDC:setBrush(DC, Brush),
+    Pen = wxPen:new(Color),
+    wxDC:setPen(DC, Pen),
     wxDC:drawRectangle(DC, {X * 4, Y * 4, 4, 4}).
