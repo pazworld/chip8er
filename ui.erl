@@ -1,5 +1,5 @@
 -module(ui).
--export([setup/0, getpixel/2, drawdot/4]).
+-export([setup/0, getpixel/2, drawdot/4, setup2/0, loop/1]).
 -include_lib("wx/include/wx.hrl").
 
 setup() ->
@@ -25,3 +25,16 @@ drawdot(Obj, X, Y, Bit) ->
     Pen = wxPen:new(Color),
     wxDC:setPen(DC, Pen),
     wxDC:drawRectangle(DC, {X * 4, Y * 4, 4, 4}).
+
+setup2() ->
+    Wx = wx:new(),
+    F = wxFrame:new(Wx, ?wxID_ANY, "chip8er"),
+    wxFrame:show(F),
+    F.
+
+loop(F) ->
+    receive
+        _ -> ok
+    after
+        5000 -> wxFrame:destroy(F)
+    end.
