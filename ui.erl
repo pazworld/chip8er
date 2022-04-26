@@ -29,12 +29,15 @@ drawdot(Obj, X, Y, Bit) ->
 setup2() ->
     Wx = wx:new(),
     F = wxFrame:new(Wx, ?wxID_ANY, "chip8er"),
+    wxFrame:connect(F, close_window),
     wxFrame:show(F),
     F.
 
 loop(F) ->
     receive
-        _ -> ok
-    after
-        5000 -> wxFrame:destroy(F)
+        #wx{event = #wxClose{}} ->
+            wxWindow:destroy(F);
+        Event ->
+            io:format("Receive event: ~w~n", [Event]),
+            loop(F)
     end.
